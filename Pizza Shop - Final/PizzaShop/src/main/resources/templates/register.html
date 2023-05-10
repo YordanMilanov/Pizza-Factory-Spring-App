@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main class="index-main">
+    <div class="register">
+
+        <h1>Register Form</h1>
+        <form th:action="@{/users/register}"
+              th:method="POST"
+              th:object="${userRegisterBindingModel}">
+
+            <h3 th:if="${emailIsNotEmpty == true}" class="mt-5 text-center">
+                <strong class="bg-danger rounded text-white">
+                    Email is already used.
+                </strong>
+            </h3>
+
+            <h3 th:if="${usernameIsNotEmpty == true}" class="mt-5 text-center">
+                <strong class="bg-danger rounded text-white">
+                    Username is already used.
+                </strong>
+            </h3>
+
+            <h3 th:if="${passwordNotMatch == true}" class="mt-5 text-center">
+                <strong class="bg-danger rounded text-white">
+                    Password and confirm password does not match!
+                </strong>
+            </h3>
+
+            <!-- username input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example1">Username</label>
+                <input name="username"
+                       th:field="*{username}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       id="form3Example1"
+                       class="form-control"
+                       aria-describedby="usernameErrorLine"
+                       placeholder="username"/>
+
+                <small th:errors="*{username}" id="usernameErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Username length must be between 5 and 20 characters.
+                </small>
+            </div>
+
+            <!-- fullName input-->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example2">Full Name</label>
+                <input name="fullName"
+                       th:field="*{fullName}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       id="form3Example2"
+                       class="form-control"
+                       aria-describedby="fullNameErrorLine"
+                       placeholder="fullName"/>
+
+                <small th:errors="*{fullName}" id="fullNameErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Full name length must be between 5 and 50 characters.
+                </small>
+            </div>
+
+            <!-- phone number input-->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example3">Phone Number</label>
+                <input name="phone"
+                       th:field="*{phone}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       id="form3Example3"
+                       class="form-control"
+                       aria-describedby="PhoneErrorLine"
+                       placeholder="phone"/>
+
+                <small th:errors="*{phone}" id="PhoneErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Full name length must be between 5 and 50 characters.
+                </small>
+            </div>
+
+            <!-- Email input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example4">Email address</label>
+                <input name="email"
+                       th:field="*{email}"
+                       th:errorclass="is-invalid"
+                       type="email"
+                       id="form3Example4"
+                       class="form-control"
+                       aria-describedby="emailErrorLine"
+                       placeholder="email"/>
+
+                <small th:errors="*{email}" id="emailErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Email length must be between 5 and 50 characters.
+                </small>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example5">Password</label>
+                <input name="password"
+                       th:field="*{password}"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       id="form3Example5"
+                       class="form-control"
+                       aria-describedby="passwordErrorLine"
+                       placeholder="password"/>
+
+                <small th:errors="*{password}" id="passwordErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Password must be longer than 5 characters.
+                </small>
+            </div>
+
+            <!--Confirm Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="form3Example6">Confirm Password</label>
+                <input name="confirmPassword"
+                       th:field="*{confirmPassword}"
+                       th:errorclass="is-invalid"
+                       type="password"
+                       id="form3Example6"
+                       class="form-control"
+                       aria-describedby="confirmPasswordErrorLine"
+                       placeholder="Confirm password"/>
+
+                <small th:errors="*{confirmPassword}" id="confirmPasswordErrorLine"
+                       class="invalid-feedback bg-danger text-light rounded">
+                    Password must be longer than 5 characters.
+                </small>
+            </div>
+
+            <label class="form-label ">Address</label>
+            <div class="form-outline mb-4">
+                <input name="city"
+                       th:field="*{city}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control address-input d-inline-block"
+                       aria-describedby="cityErrorLine"
+                       placeholder="City"/>
+                <small th:errors="*{city}" id="city"
+                       class="invalid-feedback bg-danger text-light rounded">
+                </small>
+
+                <input name="neighborhood"
+                       th:field="*{neighborhood}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control address-input d-inline-block"
+                       aria-describedby="neighborhoodErrorLine"
+                       placeholder="neighborhood"/>
+                <small th:errors="*{neighborhood}" id="neighborhood"
+                       class="invalid-feedback bg-danger text-light rounded">
+                </small>
+
+                <input name="street"
+                       th:field="*{street}"
+                       th:errorclass="is-invalid"
+                       type="text"
+                       class="form-control address-input d-inline-block"
+                       aria-describedby="streetErrorLine"
+                       placeholder="street"/>
+                <small th:errors="*{street}" id="street"
+                       class="invalid-feedback bg-danger text-light rounded">
+                </small>
+
+                <input name="streetNumber"
+                       th:field="*{streetNumber}"
+                       th:errorclass="is-invalid"
+                       type="number"
+                       min="1"
+                       required
+                       class="form-control address-input d-inline-block"
+                       aria-describedby="streetNumberErrorLine"
+                       placeholder="Street Number"/>
+                <small th:errors="*{streetNumber}" id="streetNumber"
+                       class="invalid-feedback bg-danger text-light rounded">
+                </small>
+
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Register</button>
+        </form>
+    </div>
+</main>
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+</body>
+</html>
+

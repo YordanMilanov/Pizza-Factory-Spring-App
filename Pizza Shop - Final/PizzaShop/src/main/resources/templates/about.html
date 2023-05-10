@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main id="about-main">
+
+    <div class="about">
+
+        <div>
+            <p class="text">
+                <br>Project Information
+                <br>1. Users have 3 roles:
+                <br>&emsp;&bull;&nbsp;Manager – has all possible permissions, and access to all of the endpoints
+                <br>&emsp;&bull;&nbsp;Staff – has limited permission, and does not have access to some of the endpoints
+                <br>&emsp;&bull;&nbsp;User – has the permission to write comments and make orders.
+                <br>&emsp;&bull;&nbsp;Roles are manageable from the app.
+                <br>&emsp;&minus;&nbsp;The user cannot be left without roles. If that happens during demoting the lowest
+                possible rank is set (CUSTOMER), with VIP Level.
+                <br>2. User Levels discounts on order:
+                <br>&emsp;&bull;&nbsp;Employee – 50%
+                <br>&emsp;&bull;&nbsp;VIP – 20%
+                <br>&emsp;&bull;&nbsp;REGULAR – 10%
+                <br>&emsp;&bull;&nbsp;NEW – 0%
+                <br>&emsp;&bull;&nbsp;If the user is promoted to staff or manager rank the level is automatically set to
+                EMPLOYEE, if the user is demoted to Customer the rank is automatically set to VIP, since it was
+                EMPLOYEE.
+                <br>&emsp;&bull;&nbsp;If the user has 5 or more orders – REGULAR
+                <br>&emsp;&bull;&nbsp;If the user has 10 or more orders – VIP
+                <br>3. Shop Review Section
+                <br>&emsp;&bull;&nbsp;Only authenticated users can post reviews
+                <br>&emsp;&bull;&nbsp;Every user can delete only its own reviews
+                <br>4. Profile Section
+                <br>&emsp;&bull;&nbsp;Users can change their username in the profile section, and see their profile
+                details
+                <br>5. Menu Section
+                <br>&emsp;&bull;&nbsp;Anonymous users can only read the menu without ordering
+                <br>&emsp;&bull;&nbsp;Only authenticated user can make orders(where the discounts are added depending on
+                the user Level)
+                <br>&emsp;&bull;&nbsp;Managers can edit the ingredients of the product, form button which is only
+                visible for them.
+                <br>6. Order Active/Completed, and Order – view sections
+                <br>&emsp;&bull;&nbsp;Visible only for the staff and manager
+                <br>&emsp;&bull;&nbsp;In Order Active/completed each order can be observed individually(in Order - view)
+                and can be finished/receive information after completion of the order.
+                <br>7. Product / Ingredients section
+                <br>&emsp;&bull;&nbsp;Only Manager has the authorities to add products to the menu and respectively
+                ingredients needed for the product preparation, add sections are protected with validation for invalid input
+                <br>8. Ingredient stock section
+                <br>&emsp;&bull;&nbsp;Manager and staff have the authorities to reload ingredients and update their
+                price., and have validation for invalid input
+                <br>9.	Login / Register
+                <br>&emsp;&bull;&nbsp;Only anonymous users can reach them,
+                the register and login have validation for invalid input, such as length validation,
+                already used username/password, not matching confirm password, and bad credentials on login
+
+            </p>
+        </div>
+        <div class="pictures">
+        </div>
+
+    </div>
+
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+

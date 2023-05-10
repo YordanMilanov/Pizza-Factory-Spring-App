@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background menu-main">
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <div class="card">
+                    <img src="/images/menu-items/main-select/menu-pizza.avif" class="card-img-top" alt="Pizza Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza</h5>
+                        <p class="card-text">Pizza is a dish of Italian origin, made with an oven-baked, flat,
+                            generally round bread that is covered with tomatoes or a tomato-based sauce and mozzarella cheese.</p>
+                        <a href="/menu/pizza" class="btn btn-success">Choose Pizza</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card">
+                    <img src="/images/menu-items/main-select/menu-pasta.jpg" class="card-img-top" alt="Pasta Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Pasta</h5>
+                        <p class="card-text">Originally from Italy consisting of dough made from durum wheat,
+                            extruded or stamped into various shapes and cooked in boiling water, and typically served with a sauce.</p>
+                        <a href="/menu/pasta" class="btn btn-success">Choose pasta</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card">
+                    <img src="/images/menu-items/main-select/menu-salad.jpg" class="card-img-top" alt="Salad Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Salads</h5>
+                        <p class="card-text">Cold dish of various mixtures of raw or cooked vegetables, usually seasoned with oil,
+                            vinegar, or other dressing and sometimes accompanied by meat, fish, or other ingredients.</p>
+                        <a href="/menu/salad" class="btn btn-success">Choose salad</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card">
+                    <img src="/images/menu-items/main-select/menu-dessert.jpg" class="card-img-top" alt="Dessert Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Desserts</h5>
+                        <p class="card-text">Desserts can come in many forms, such as cakes, pies, pastries, ice cream,
+                            puddings, and fruits, among others. They can be made from a wide variety of ingredients</p>
+                        <a href="/menu/dessert" class="btn btn-success">Choose dessert</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-4">
+                <div class="card">
+                    <img src="/images/menu-items/main-select/menu-drink.jpg" class="card-img-top" alt="Drink Image">
+                    <div class="card-body">
+                        <h5 class="card-title">Drinks</h5>
+                        <p class="card-text">Wide range of options, both alcohol and non-alcohol</p>
+                        <a href="/menu/drink" class="btn btn-success">Choose drink</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+
+</html>
+

@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/commons::head">
+</head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <div class="row justify-content-center mx-auto col-6">
+        <form id="add-product-form"
+              class="w-75 rounded text-white my-4 bg-dark rounded-5"
+              enctype="multipart/form-data"
+              th:action="@{/product/add/ingredients/{id}(id=${product.id})}"
+              th:method="post"
+              th:object="${productIngredientsAddBindingModel}">
+
+            <h3 class="text-center" th:text="'Add ' + ${product.name} + ' ingredients'"> Add product Ingredients</h3>
+            <div class="row justify-content-center mx-auto col-6 mt-2">
+                <div class="bg-transparent">
+<!--                    <img th:src="${'data:image/jpeg;base64,' + image}" alt="Image" />-->
+                    <img id="add-ingredient-product-img" th:src="${imageURL}" alt="Image" />
+                    <div class="">
+                        <h5 class="card-title" th:text="${product.name}"></h5>
+                        <p class="card-text" th:text="${product.description}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <div id="ingredientInputs" class="container">
+                <div id="ingredientNames" class="mt-2">
+                    <div class="form-group">
+                        <label for="inputIngredientName" class="col-form-label">Ingredient Name</label>
+                        <select th:field="*{ingredientName}"
+                                th:errorclass="'is-invalid bg-danger'"
+                                id="inputIngredientName"
+                                class="custom-select">
+                            <option value="" selected></option>
+                            <option th:each="I : ${allIngredients}"
+                                    th:value="${I}"
+                                    th:text="${I}"></option>
+                        </select>
+                        <small th:if="${#fields.hasErrors('ingredientName')}" th:errors="*{ingredientName}"
+                               id="inputIngredientNameError"
+                               class="rounded text-danger">Ingredient must be selected</small>
+                    </div>
+                </div>
+
+                <div id="ingredientGrams" class="mt-2 w-25">
+                    <div class="form-group">
+                        <label for="inputIngredientGram" class="col-form-label">Ingredient grams</label>
+                    </div>
+                    <div class="form-group">
+                        <input name="inputIngredientGram"
+                               th:field="*{ingredientGram}"
+                               th:errorclass="'is-invalid bg-danger'"
+                               required minlength="1" maxlength="20"
+                               type="number"
+                               pattern="[0-9]+([\.][0-9]+)?"
+                               step="0"
+                               id="inputIngredientGram"
+                               class="form-control"
+                               aria-describedby="inputIngredientGramsError">
+                        <small th:if="${#fields.hasErrors('ingredientGram')}" th:errors="*{ingredientGram}"
+                               id="inputIngredientGramsError"
+                               class="rounded text-danger">Ingredient grams must be positive</small>
+                    </div>
+                </div>
+                <hr>
+            </div>
+
+            <div class="d-flex justify-content-center mb-3">
+                <button class="btn btn-success btn-block w-50" type="submit">Add ingredient</button>
+            </div>
+        </form>
+
+        <div class="justify-content-center">
+            <table id="table-active" class="table table-bordered table-dark w-100 mx-auto my-5">
+                <thead>
+                <tr>
+                    <th colspan="4" class="text-center">Required Ingredients</th>
+                </tr>
+
+                <tr>
+                    <th class="col-1">Ingredient ID</th>
+                    <th class="col-3">Name</th>
+                    <th class="col-3">Grams</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="i : ${product.requiredProducts}">
+                    <th scope="row" th:text="*{i.getKey().getId()}"></th>
+                    <td th:text="*{i.getKey().getName()}"></td>
+                    <td th:text="*{i.getValue()}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+
+</body>
+</html>
+

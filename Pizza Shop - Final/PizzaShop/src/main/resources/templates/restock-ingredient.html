@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+  <div class="row justify-content-center mx-auto col-6">
+    <form id="add-product-form"
+          class="w-75 rounded text-white my-4 bg-dark rounded-5"
+          enctype="multipart/form-data"
+          th:action="@{/ingredient/restock/{id}(id=${ingredient.id})}"
+          th:method="post"
+          th:object="${ingredientRestockBindingModel}">
+
+      <h3 class="text-center" th:text="'Restock: ' + ${ingredient.getName()}">Restock ingredient</h3>
+
+      <div class="mt-2">
+        <div class="form-group">
+          <label for="inputPrice" class="col-form-label">Price per kilogram</label>
+        </div>
+        <div class="form-group">
+          <input name="price"
+                 th:field="*{price}"
+                 th:errorclass="'is-invalid bg-danger'"
+                 required minlength="1" maxlength="20"
+                 type="number"
+                 pattern="[0-9]+([\.][0-9]+)?"
+                 step="0.01"
+                 id="inputPrice"
+                 class="form-control"
+                 aria-describedby="inputFatError">
+          <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" id="inputPriceError"
+                 class="rounded text-danger">Price must be positive</small>
+
+        </div>
+      </div>
+
+
+      <div class="mt-2">
+        <div class="form-group">
+          <label for="inputStockInKg" class="col-form-label">Stock in kilograms</label>
+        </div>
+        <div class="form-group">
+          <input name="stockInKg"
+                 th:field="*{stockInKg}"
+                 th:errorclass="'is-invalid bg-danger'"
+                 required minlength="1" maxlength="20"
+                 type="number"
+                 pattern="[0-9]+([\.][0-9]+)?"
+                 step="0.001"
+                 id="inputStockInKg"
+                 class="form-control"
+                 aria-describedby="inputStockInKgError">
+          <small th:if="${#fields.hasErrors('stockInKg')}" th:errors="*{stockInKg}" id="inputStockInKgError"
+                 class="rounded text-danger">Stock must be positive</small>
+
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="d-flex justify-content-center mb-3">
+        <button class="btn btn-success btn-block w-50" type="submit">Update ingredient</button>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+
+</html>

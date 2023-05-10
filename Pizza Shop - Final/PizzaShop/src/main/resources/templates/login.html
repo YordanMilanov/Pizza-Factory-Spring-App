@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main class="index-main">
+    <div class="login">
+        <h1>Login</h1>
+
+        <form th:action="@{/users/login}"
+              method="post">
+            <div th:if="${param.error}" class="alert alert-danger mx-auto">Invalid Username or Password!</div>
+
+            <!-- username input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="inputUsername">Username</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input name="username"
+                       type="text"
+                       id="inputUsername"
+                       minlength="5"
+                       maxlength="20"
+                       class="form-control w-75 mx-auto"
+                       aria-describedby="usernameErrorLine"
+                       placeholder="Username"/>
+            </div>
+
+            <!-- Password input -->
+            <div class="form-outline mb-4">
+                <label class="form-label" for="inputPassword">Password</label>
+            </div>
+            <div class="form-outline mb-4">
+                <input name="password"
+                       type="password"
+                       id="inputPassword"
+                       minlength="5"
+                       maxlength="20"
+                       class="form-control w-75 mx-auto"
+                       aria-describedby="passwordErrorLine"
+                       placeholder="password"/>
+            </div>
+
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+        </form>
+    </div>
+    </div>
+
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+

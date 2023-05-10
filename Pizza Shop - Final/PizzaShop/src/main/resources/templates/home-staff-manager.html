@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+  <!--carousel-->
+  <div id="customer-home-carousel" class="carousel slide">
+
+    <!--the - - - - - buttons-->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="0" class="active"
+              aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="1"
+              aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="2"
+              aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="3"
+              aria-label="Slide 4"></button>
+      <button sec:authorize="hasRole('MANAGER')" type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="4"
+              aria-label="Slide 5"></button>
+    </div>
+
+    <!--each item-->
+    <div  class="carousel-inner">
+      <div class="carousel-item active c-item">
+        <img  th:src="'/images/home-carousel-select/pizza-select.jpg'" class="d-block w-100 c-img" alt="Pizza Image">
+        <div class="carousel-caption d-none d-md-block c-description">
+          <h>Update the menu</h>
+          <p></p>
+          <button onClick="location.href='/product/add'" type="button" class="btn btn-success btn-lg">Add product</button>
+        </div>
+      </div>
+
+      <div class="carousel-item c-item">
+        <img th:src="'/images/home-carousel-select/pasta-select.jpg'" class="d-block w-100 c-img" alt="Pasta Image">
+        <div class="carousel-caption d-none d-md-block c-description">
+          <h>Product stock</h>
+          <p></p>
+          <button onClick="location.href='/ingredient/list'" type="button" class="btn btn-success btn-lg">Go to storage</button>
+        </div>
+      </div>
+
+      <div class="carousel-item c-item">
+        <img th:src="'/images/home-carousel-select/salad-select.jpg'" class="d-block w-100 c-img" alt="Salad Image">
+        <div class="carousel-caption d-none d-md-block c-description">
+          <h>Active Orders</h>
+          <p></p>
+          <button onClick="location.href='/order/active'" type="button" class="btn btn-success btn-lg">Go to active orders</button>
+        </div>
+      </div>
+
+      <div class="carousel-item c-item">
+        <img th:src="'/images/home-carousel-select/dessert-select.jpg'" class="d-block w-100 c-img" alt="Dessert Image">
+        <div class="carousel-caption d-none d-md-block c-description">
+          <h>Completed orders</h>
+          <p></p>
+          <button onClick="location.href='/order/completed'" type="button" class="btn btn-success btn-lg">Go to completed orders</button>
+        </div>
+      </div>
+
+      <div sec:authorize="hasRole('MANAGER')" class="carousel-item c-item">
+        <img th:src="'/images/home-carousel-select/drink-select.jpg'" class="d-block w-100 c-img" alt="Drink Image">
+        <div class="carousel-caption d-none d-md-block c-description">
+          <h>Staff Management</h>
+          <p></p>
+          <button onClick="location.href='/users/list'" type="button" class="btn btn-success btn-lg">Go to staff list</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!--previous-next buttons-->
+    <button class="carousel-control-prev" type="button" data-bs-target="#customer-home-carousel"
+            data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#customer-home-carousel"
+            data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+
+</html>
+

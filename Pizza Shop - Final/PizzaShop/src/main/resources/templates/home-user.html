@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <!--orders-buttons-->
+    <div id="nav-buttons-user-home" class="btn-group order-buttons" role="group" aria-label="Basic mixed styles example">
+        <button type="button" class="btn btn-success">Deal of the week</button>
+        <button type="button" class="btn btn-white">Best sellers</button>
+        <button type="button" class="btn btn-danger">Promo packs</button>
+    </div>
+
+    <!--carousel-->
+    <div id="customer-home-carousel" class="carousel slide">
+        <!--the - - - - - buttons-->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+            <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="3"
+                    aria-label="Slide 4"></button>
+            <button type="button" data-bs-target="#customer-home-carousel" data-bs-slide-to="4"
+                    aria-label="Slide 5"></button>
+        </div>
+
+        <!--each item-->
+        <div class="carousel-inner">
+            <div class="carousel-item active c-item">
+                <img th:src="'/images/home-carousel-select/pizza-select.jpg'" class="d-block w-100 c-img" alt="Pizza Image">
+                <div class="carousel-caption d-none d-md-block c-description">
+                    <h>That's why you are here</h>
+                    <p>Feel the real italian taste</p>
+                    <button onClick="location.href='/menu/pizza'" type="button" class="btn btn-success btn-lg">Order pizza</button>
+                </div>
+            </div>
+
+            <div class="carousel-item c-item">
+                <img th:src="'/images/home-carousel-select/pasta-select.jpg'" class="d-block w-100 c-img" alt="Pasta Image">
+                <div class="carousel-caption d-none d-md-block c-description">
+                    <h>More italian taste</h>
+                    <p>Definitely not to miss the mix of tastes</p>
+                    <button onClick="location.href='/menu/pasta'" type="button" class="btn btn-success btn-lg">Order pasta</button>
+                </div>
+            </div>
+
+            <div class="carousel-item c-item">
+                <img th:src="'/images/home-carousel-select/salad-select.jpg'" class="d-block w-100 c-img" alt="Salad Image">
+                <div class="carousel-caption d-none d-md-block c-description">
+                    <h>Go healthy</h>
+                    <p>For those who care about the calories but want it to be tasty</p>
+                    <button onClick="location.href='/menu/salad'" type="button" class="btn btn-success btn-lg">Order salad</button>
+                </div>
+            </div>
+
+            <div class="carousel-item c-item">
+                <img th:src="'/images/home-carousel-select/dessert-select.jpg'" class="d-block w-100 c-img" alt="Dessert Image">
+                <div class="carousel-caption d-none d-md-block c-description">
+                    <h>Not so healthy</h>
+                    <p>For those who does not care about the calories in the name of the pleasure</p>
+                    <button onClick="location.href='/menu/dessert'" type="button" class="btn btn-success btn-lg">Order dessert</button>
+                </div>
+            </div>
+
+            <div class="carousel-item c-item">
+                <img th:src="'/images/home-carousel-select/drink-select.jpg'" class="d-block w-100 c-img" alt="Drink Image">
+                <div class="carousel-caption d-none d-md-block c-description">
+                    <h>Tone up or relax</h>
+                    <p>From morning drinks to exotic night beverages</p>
+                    <button onClick="location.href='/menu/drink'" type="button" class="btn btn-success btn-lg">Order drink</button>
+                </div>
+            </div>
+        </div>
+
+        <!--previous-next buttons-->
+        <button class="carousel-control-prev" type="button" data-bs-target="#customer-home-carousel"
+                data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#customer-home-carousel"
+                data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+
+</html>
+

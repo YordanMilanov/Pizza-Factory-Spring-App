@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <!--    <label th:if="${incorrectName}" id="incorrectUserNameLine"-->
+    <!--           class="w-25 mx-auto my-2 text-xl-center justify-content-center bg-danger text-light rounded">-->
+    <!--        Username length must be between 5 and 20 characters.-->
+    <!--    </label>-->
+    <!--    <label th:if="${usedName}" id="usernameUsedErrorLine"-->
+    <!--           class="w-25 mx-auto my-2 text-xl-center justify-content-center bg-danger text-light rounded">-->
+    <!--        Username is already used!-->
+    <!--    </label>-->
+    <div class="container">
+        <div class="main-body">
+            <div id="profile-card"
+                 class="card mb-3">
+
+                <form th:action="@{/users/profile}"
+                      th:method="POST"
+                      th:object="${userView}">
+
+                    <div class="card-body">
+                        <h1>Profile Settings</h1>
+
+                        <div class="row">
+                            <div class="col-sm-4 mt-2">
+                                <h6 class="mb-0">Username</h6>
+                                <a class="mb-0"></a>
+                            </div>
+
+                            <div class="form-outline col-sm-8">
+                                <input name="username"
+                                       th:field="${userNameUpdateBindingModel.username}"
+                                       th:errorclass="is-invalid"
+                                       type="text"
+                                       id="form3Example1"
+                                       class="form-control text-center"
+                                       aria-describedby="usernameErrorLine"
+                                       th:placeholder="*{username}"/>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Full Name</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary"
+                                 th:text="*{fullName}">
+                                Full Name
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Mobile number</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary"
+                                 th:text="*{phone}">
+                                Phone number
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Email</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary"
+                                 th:text="*{email}">
+                                email
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Level</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary"
+                                 th:text="*{level}">
+                                email
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <div class="row" th:each="r : *{roles}">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0 mt-1">Role</h6>
+                            </div>
+                            <div class="col-sm-8 justify-content-right text-center text-secondary mt-1">
+                                <div th:text="${r.role.toString()}"></div>
+                            </div>
+                        </div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h6 class="mb-0">Address</h6>
+                            </div>
+                            <div class="col-sm-8 text-secondary" th:text="*{address}">
+                                Bay Area, San Francisco, CA
+                            </div>
+                        </div>
+                        <hr>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <button type="submit" class="btn btn-danger">Confirm username change</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+                        <div th:if="${incorrectName}"
+                             class="text-center text-black bg-danger mx-auto mt-2 w-50 justify-content-center rounded">Name length must be between 5 and 20 characters!</div>
+                        <div th:if="${usedName}"
+                             class="text-center text-black bg-danger mx-auto mt-2 w-50 justify-content-center rounded">Name is already used!</div>
+        </div>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+

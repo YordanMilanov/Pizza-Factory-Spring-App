@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <div class="justify-content-center">
+        <table id="table-active" class="table table-bordered table-dark w-75 mx-auto my-5 text-center">
+            <thead>
+            <tr>
+                <th colspan="6">Active Orders</th>
+            </tr>
+            <tr>
+                <th class="col-1">Order ID</th>
+                <th class="col-2">Username</th>
+                <th class="col-1">Phone</th>
+                <th class="col-1">Order time placed</th>
+                <th class="col-1">Check the order</th>
+                <th class="col-1">Finish Order</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="o : ${allOrders}">
+                <th th:text="${o.id}" scope="row">Order ID</th>
+                <td th:text="${o.user.username}">Username</td>
+                <td th:text="${o.user.phone}">Phone</td>
+                <td th:text="${#temporals.format(o.orderTime, 'dd.MM.yyyy HH:mm')}">Phone</td>
+                <td class="col-1">
+                    <a th:href="@{'/order/view/' + ${o.id}}"  type="button" class="btn btn-danger btn-sm w-100 h-25">Go to order</a>
+                </td>
+                <td class="col-1">
+                    <a th:href="@{'/order/active/finish/' + ${o.id}}"  type="button" class="btn btn-success btn-sm w-100 h-25">Finish Order</a>
+                </td>
+            </tr>
+            </tbody>
+
+        </table>
+    </div>
+
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+

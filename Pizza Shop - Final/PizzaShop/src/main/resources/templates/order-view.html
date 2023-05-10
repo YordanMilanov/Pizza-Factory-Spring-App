@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <div class="justify-content-center">
+        <table id="table-active" class="table table-bordered table-dark w-75 mx-auto my-5 text-center">
+            <thead>
+            <tr>
+                <th colspan="4" th:text="'Order ID - ' + ${order.id} + ' (User - ' + ${order.user.username} + ')'">Active Orders</th>
+            </tr>
+            <tr>
+                <th class="col-1">Product ID</th>
+                <th class="col-2">Product name</th>
+                <th class="col-1">Type</th>
+                <th class="col-1">Quantity</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="productQuantity : ${order.productQuantity.entrySet()}">
+                <th th:text="${productQuantity.getKey().id}" scope="row">Product ID</th>
+                <td th:text="${productQuantity.getKey().name}">Product Name</td>
+                <td th:text="${productQuantity.getKey().productTypeEnum}">Type</td>
+                <td th:text="${productQuantity.getValue()}">Quantity</td>
+            </tr>
+            </tbody>
+            <tr>
+                <td colspan="4" th:text="'Total Price: ' + ${#numbers.formatDecimal(order.price,1,2,'POINT')} + '$'"></td>
+            </tr>
+        </table>
+    </div>
+
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+

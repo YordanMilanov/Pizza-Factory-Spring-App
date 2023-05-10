@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+
+    <div class="row justify-content-center mx-auto col-6">
+        <form id="add-product-form"
+              class="w-75 rounded text-white my-4 bg-dark rounded-5"
+              enctype="multipart/form-data"
+              th:action="@{/ingredient/add}"
+              th:method="post"
+              th:object="${ingredientAddBindingModel}">
+
+            <h3 class="text-center">Add ingredient</h3>
+
+            <div>
+                <div class="form-group">
+                    <label for="inputName" class="col-form-label ">Name</label>
+                </div>
+                <div class="form-group">
+                    <input name="name"
+                           th:field="*{name}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="text"
+                           id="inputName"
+                           class="form-control"
+                           aria-describedby="inputNameError">
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="inputNameError"
+                           class="rounded text-danger">Name length must be more than 3 characters</small>
+
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <div class="form-group">
+                    <label for="inputProtein" class="col-form-label">Protein in 100 grams</label>
+                </div>
+                <div class="form-group">
+                    <input name="protein"
+                           th:field="*{protein}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="number"
+                           id="inputProtein"
+                           class="form-control"
+                           aria-describedby="inputNameError">
+                    <small th:if="${#fields.hasErrors('protein')}" th:errors="*{protein}" id="inputProteinError"
+                           class="rounded text-danger">Protein must be 0 or more</small>
+
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <div class="form-group">
+                    <label for="inputCarbohydrates" class="col-form-label">Carbohydrates in 100 grams</label>
+                </div>
+                <div class="form-group">
+                    <input name="carbohydrates"
+                           th:field="*{carbohydrates}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="number"
+                           id="inputCarbohydrates"
+                           class="form-control"
+                           aria-describedby="inputNameError">
+                    <small th:if="${#fields.hasErrors('carbohydrates')}" th:errors="*{carbohydrates}" id="inputCarbohydratesError"
+                            class="rounded text-danger">Carbohydrates must be 0 or more</small>
+
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <div class="form-group">
+                    <label for="inputFat" class="col-form-label">Fat in 100 grams</label>
+                </div>
+                <div class="form-group">
+                    <input name="fat"
+                           th:field="*{fat}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="number"
+                           id="inputFat"
+                           class="form-control"
+                           aria-describedby="inputFatError">
+                    <small th:if="${#fields.hasErrors('fat')}" th:errors="*{fat}" id="inputFatError"
+                            class="rounded text-danger">Fat must be 0 or more</small>
+
+                </div>
+            </div>
+
+            <div class="mt-2">
+                <div class="form-group">
+                    <label for="inputPrice" class="col-form-label">Price per kilogram</label>
+                </div>
+                <div class="form-group">
+                    <input name="price"
+                           th:field="*{price}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="number"
+                           pattern="[0-9]+([\.][0-9]+)?"
+                           step="0.01"
+                           id="inputPrice"
+                           class="form-control"
+                           aria-describedby="inputFatError">
+                    <small th:if="${#fields.hasErrors('price')}" th:errors="*{price}" id="inputPriceError"
+                            class="rounded text-danger">Price must be positive</small>
+
+                </div>
+            </div>
+
+
+            <div class="mt-2">
+                <div class="form-group">
+                    <label for="inputStockInKg" class="col-form-label">Stock in kilograms</label>
+                </div>
+                <div class="form-group">
+                    <input name="stockInKg"
+                           th:field="*{stockInKg}"
+                           th:errorclass="'is-invalid bg-danger'"
+                           required minlength="1" maxlength="20"
+                           type="number"
+                           pattern="[0-9]+([\.][0-9]+)?"
+                           step="0.001"
+                           id="inputStockInKg"
+                           class="form-control"
+                           aria-describedby="inputStockInKgError">
+                    <small th:if="${#fields.hasErrors('stockInKg')}" th:errors="*{stockInKg}" id="inputStockInKgError"
+                           class="rounded text-danger">Stock must be positive</small>
+
+                </div>
+            </div>
+
+            <div>
+                <div class="form-group mt-2 mb-2 col-6">
+                    <label class="m-0" for="ingredientType">Ingredient Type:</label>
+                    <input th:field="*{ingredientType}"
+                           th:each="c : ${T(bg.softuni.pizzashop.model.entity.enums.IngredientTypeEnum).values()}"
+                           th:text="${c}"
+                           th:value="${c}"
+                           class="ms-3 me-1 "
+                           type="radio"
+                           name="ingredientType"
+                           id="ingredientType">
+                    <br>
+                    <small th:if="${#fields.hasErrors('ingredientType')}" th:errors="*{ingredientType}" id="ingredientTypeError"
+                            class="rounded text-danger">Custom Massage from @Spring Validation</small>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center mb-3">
+                <button class="btn btn-success btn-block w-50" type="submit">Add ingredient</button>
+            </div>
+
+        </form>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+
+</html>

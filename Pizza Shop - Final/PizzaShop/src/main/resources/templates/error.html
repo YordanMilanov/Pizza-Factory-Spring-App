@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+<main class="wood-background"> <div class="site-header">
+    <h1>An Unexpected error happened!We are working on the problem!Thank you for your patience!</h1>
+    <div th:if="${message != 'No message available'}">
+    <h1 th:text="${message}">An unexpected error happened. We are working on the problem!</h1>
+    </div>
+</div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>

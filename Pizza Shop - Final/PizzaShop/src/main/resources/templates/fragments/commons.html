@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:form="http://www.w3.org/1999/xhtml">
+<head th:fragment="head">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="_csrf" th:content="${_csrf.token}" />
+    <meta name="_csrf_header" th:content="${_csrf.headerName}" />
+    <title>Pizza Factory</title>
+    <link rel="icon" type="image/x-icon" href="https://drive.google.com/uc?id=1M_03HZp8EkxXe6KYHoTOpL2wK0BgTIQB">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/style.css">
+    <img src="https://drive.google.com/uc?export=view&id=1IKTo95PihHEAyLN4dmNEaRkH9G8AZMfS"
+         th:src="'/images/background/Pizza-Background.jpg'" class="pizza-background">
+</head>
+
+<body>
+<header th:fragment="nav">
+
+    <section class="navigation">
+        <p><a href="/">Pizza Factory</a></p>
+
+        <form th:method="get"
+              class="language-interceptor">
+            <label th:text="#{navbar_language}" for="lang"></label>
+            <select
+                    onchange="this.form.submit()"
+                    id="lang"
+                    name="lang">
+                <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
+                <option value="nl_NL" th:selected="${#locale.toString()} == 'nl_NL'">Netherlands
+                </option>
+            </select>
+        </form>
+
+        <nav class="nav-href">
+            <ul>
+                <!--if not logged-->
+                <div sec:authorize="isAnonymous()">
+                    <li><a th:text="#{navbar_login}" href="/users/login">Login</a></li>
+                    <li><a th:text="#{navbar_register}" href="/users/register">Register</a></li>
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a th:text="#{navbar_about}" href="/about">About us</a></li>
+                </div>
+
+                <!--if logged-->
+                <div sec:authorize="isAuthenticated()">
+                    <li><a href="/menu">Menu</a></li>
+                    <li><a href="/order/cart">Cart</a></li>
+                    <li><a href="/users/profile">Profile</a></li>
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/users/logout">Logout</a></li>
+                </div>
+            </ul>
+        </nav>
+    </section>
+</header>
+
+<footer th:fragment="footer">
+    <p>&copy;SoftUni Yordan Milanov Java Web Project. For educational purposes.</p>
+    <p class="contact-us"><a href="/comments">Shop Reviews</a></p>
+
+</footer>
+
+<script th:fragment="script-bootstrap-bundle"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous">
+</script>
+
+</body>
+
+</html>

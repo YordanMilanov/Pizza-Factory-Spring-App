@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/commons::head"></head>
+
+<body>
+<header th:replace="fragments/commons::nav"></header>
+
+<main class="wood-background">
+    <div class="justify-content-center">
+        <p th:if="${#strings.length(OrderSuccessful) > 0}" th:text="${OrderSuccessful}" class="text-center text-black bg-success mt-2 mx-auto col-3">Your current
+            order</p>
+        <p th:if="${#strings.length(OrderMissingItem) > 0}" th:text="${OrderMissingItem}" class="text-center text-black bg-danger mt-2 mx-auto col-3">Your
+            current order</p>
+        <table id="table-active" class="table table-bordered table-dark w-50 mx-auto my-5">
+            <thead>
+            <tr>
+                <th colspan="6" class="text-center">Your current order</th>
+            </tr>
+
+            <tr>
+                <th class="col-1">Quantity</th>
+                <th class="col-2">Product Name</th>
+                <th class="col-1">Type</th>
+                <th class="col-1">grams/ml</th>
+                <th class="col-1">Price</th>
+                <th class="col-1">Remove Product</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr th:each="p : ${products}">
+                <th scope="row" th:text="${p.getValue()}">1</th>
+                <td th:text="${p.getKey().name}">Product Name</td>
+                <td th:text="${p.getKey().productTypeEnum.toString().substring(0, 1).toUpperCase() + p.getKey().productTypeEnum.toString().substring(1).toLowerCase()}">
+                    Product Type
+                </td>
+                <td th:text="${p.getKey().grams} + 'g/ml'">Product Grams</td>
+                <td th:text="${#numbers.formatDecimal(p.getKey().price,1,2,'POINT')} + '$'">Product Price</td>
+                <td><a th:href="@{'/order/cart/remove/' + ${p.getKey().id}}" type="button"
+                       class="btn btn-danger btn-sm w-100 h-25">Remove
+                    item</a></td>
+            </tr>
+
+            <form th:action="@{/order/cart}"
+                  th:method="POST"
+                  th:object="${orderAddBindingModel}">
+                <tr>
+                    <!-- phone number input-->
+                    <td colspan="6" class="text-center">
+                        <div class="form-outline mb-1  w-100 mx-auto my-0">
+                            <input th:field="*{description}"
+                                   type="text"
+                                   id="AdditionalInformation"
+                                   class="form-control"
+                                   placeholder="Additional Information"/>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr th:if="${products.size() > 0}">
+                    <td colspan="6" class="text-center">
+                        <button type="submit"
+                                class="btn btn-success btn-sm w-50 h-25 mx-center"
+                                th:text="${#numbers.formatDecimal(total,1,2,'POINT')} + '$ - Finish Order'">Finish
+                            Order
+                        </button>
+                    </td>
+                </tr>
+            </form>
+
+            <tr>
+                <div th:if="${param.emptyCart}">
+                    <div class="alert alert-danger" th:text="${param.emptyCart}"></div>
+                </div>
+            </tr>
+
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<footer th:replace="fragments/commons::footer"></footer>
+<script th:replace="fragments/commons::script-bootstrap-bundle"></script>
+
+</body>
+</html>
+
